@@ -117,16 +117,20 @@ d3.csv("https://hsu-chen.github.io/VISHW2/index.csv", function(error, data) {
     var chartType = d3.select(this).attr('id');
     
     d3.selectAll(".area").filter(function(e){return d3.select(this).attr("name") == "a"}).remove();  
-
+    d3.selectAll(".area").filter(function(e){return d3.select(this).attr("name") == "b"}).remove();  
+    d3.selectAll(".axis--x").filter(function(e){return d3.select(this).attr("name") == "a"}).remove();  
+    d3.selectAll(".axis--y").filter(function(e){return d3.select(this).attr("name") == "a"}).remove();  
+    d3.selectAll(".brush").filter(function(e){return d3.select(this).attr("name") == "a"}).remove();  
+    d3.selectAll(".zoom").filter(function(e){return d3.select(this).attr("name") == "a"}).remove();  
+    
     if(chartType === "gain"){area.y1(function(d) { return y(d.number); });area2.y1(function(d) { return y2(d.number); });}
     else if(chartType === "pay"){area.y1(function(d) { return y(d.sell); });area2.y1(function(d) { return y2(d.sell); });}
-
   x.domain([1,67]);
   console.log(x.domain());
   y.domain([28, 30]);
   x2.domain(x.domain());
   y2.domain(y.domain());
-  
+
   focus.append("path")
       .datum(data)
       .attr("class", "area")
@@ -135,25 +139,30 @@ d3.csv("https://hsu-chen.github.io/VISHW2/index.csv", function(error, data) {
 
   focus.append("g")
       .attr("class", "axis axis--x")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(0," + height + ")") 
+      .attr("name", "a")       
       .call(xAxis);
 
   focus.append("g")
-      .attr("class", "axis axis--y")
+      .attr("class", "axis axis--y")   
+      .attr("name", "a")   
       .call(yAxis);
 
   context.append("path")
       .datum(data)
       .attr("class", "area")
-      .attr("d", area2);
+      .attr("d", area2)
+      .attr("name", "b");
 
   context.append("g")
       .attr("class", "axis axis--x")
       .attr("transform", "translate(0," + height2 + ")")
+      .attr("name", "a")
       .call(xAxis2);
 
   context.append("g")
       .attr("class", "brush")
+      .attr("name", "a")
       .call(brush)
       .call(brush.move, x.range());
 
@@ -162,6 +171,7 @@ d3.csv("https://hsu-chen.github.io/VISHW2/index.csv", function(error, data) {
       .attr("width", width)
       .attr("height", height)
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .attr("name", "a")
       .call(zoom);
 
   svg.append("text")             
