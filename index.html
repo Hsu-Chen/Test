@@ -126,7 +126,7 @@ d3.csv("https://hsu-chen.github.io/VISHW2/index.csv", function(error, data) {
   x2.domain(x.domain());
   y2.domain(y.domain());
 
-  svg.selectAll(".area").filter(function(e){return d3.select(this).attr("name") == "a"}).remove();  
+  d3.selectAll(".area").filter(function(e){return d3.select(this).attr("name") == "a"}).remove();  
   focus.append("path")
       .datum(data)
       .attr("class", "area")
