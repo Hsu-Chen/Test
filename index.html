@@ -110,16 +110,12 @@ var context = svg.append("g")
     .attr("class", "context")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
+var input;
+
 d3.csv("https://hsu-chen.github.io/VISHW2/index.csv", function(error, data) {
   if (error) throw error;
-
-  d3.selectAll('#button-container > button').on('click', function(){
-    var chartType = d3.select(this).attr('id');
-    
-    
-    if(chartType === "gain"){area.y1(function(d) { return y(d.number); });area2.y1(function(d) { return y2(d.number); });}
-    else if(chartType === "pay"){area.y1(function(d) { return y(d.sell); });area2.y1(function(d) { return y2(d.sell); });}
-
+  
+  input = data;
   x.domain([1,67]);
   console.log(x.domain());
   y.domain([28, 30]);
@@ -173,8 +169,16 @@ d3.csv("https://hsu-chen.github.io/VISHW2/index.csv", function(error, data) {
         .style("text-anchor", "middle")
         .text("元");
 
-  });
+});
 
+d3.selectAll('#button-container > button').on('click', function(){
+    var chartType = d3.select(this).attr('id');
+    if(chartType === "gain"){area.y1(input.number);area2.y1(input.number);}
+    else if(chartType === "pay"){area.y1(input.sell);area2.y1(input.sell);}
+
+    focus.attr("class", "area")
+      .attr("d", area)
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 });
 
 function brushed() {
