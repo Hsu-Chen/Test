@@ -179,6 +179,11 @@ d3.selectAll('#button-container > button').on('click', function(){
     focus.selectAll(".area").enter()
       .attr("d", area)
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    context.selectAll(".area").enter()
+      //.datum(data)
+      .attr("d", area2)
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); 
 });
 
 function brushed() {
