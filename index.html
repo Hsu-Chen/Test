@@ -175,8 +175,7 @@ d3.selectAll('#button-container > button').on('click', function(){
     var chartType = d3.select(this).attr('id');
     if(chartType === "gain"){area.y1(input.number);area2.y1(input.number);}
     else if(chartType === "pay"){area.y1(input.sell);area2.y1(input.sell);}
-    console.log(input.sell);
-    focus.selectAll(".area").enter()
+    focus.selectAll(".area").data(input.number).enter()
       .attr("d", area)
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
