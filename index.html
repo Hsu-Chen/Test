@@ -179,6 +179,9 @@ d3.selectAll('#button-container > button').on('click', function(){
     focus.selectAll(".area")
       .attr("d", area)
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    svg.selectAll("rect")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .call(zoom);
 });
 
 function brushed() {
