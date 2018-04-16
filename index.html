@@ -176,12 +176,9 @@ d3.selectAll('#button-container > button').on('click', function(){
     if(chartType === "gain"){area.y1(input.number);area2.y1(input.number);}
     else if(chartType === "pay"){area.y1(input.sell);area2.y1(input.sell);}
 
-    focus.selectAll(".area")
+    focus.selectAll(".area").enter()
       .attr("d", area)
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-    svg.selectAll("rect")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-      .call(zoom);
 });
 
 function brushed() {
