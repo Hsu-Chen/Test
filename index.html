@@ -176,12 +176,8 @@ d3.selectAll('#button-container > button').on('click', function(){
     if(chartType === "gain"){area.y1(function(d) { return y(d.number); });area2.y1(function(d) { return y(d.number); });}
     else if(chartType === "pay"){area.y1(function(d) { return y(d.sell); });area2.y1(function(d) { return y(d.sell); });}
     focus.selectAll(".area").data(input).enter()
-      .attr("d", area)
       .transition();
 
-    context.selectAll(".area").data(input).enter()
-      .attr("d", area2)
-      .transition();
 });
 
 function brushed() {
