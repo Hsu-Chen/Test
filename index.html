@@ -135,7 +135,7 @@ d3.csv("https://hsu-chen.github.io/VISHW2/index.csv", function(error, data) {
       .datum(data)
       .attr("class", "area")
       .attr("d", area)
-      .attr("name", "a");
+      .attr("name", "a").transition().duration(700);
 
   focus.append("g")
       .attr("class", "axis axis--x")
